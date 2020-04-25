@@ -1,1 +1,1 @@
-# Репозиторий для домашних заданий
+# Repository for homework
