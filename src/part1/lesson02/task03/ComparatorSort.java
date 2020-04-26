@@ -34,6 +34,6 @@ public class ComparatorSort implements UserSort {
             }
         });
 
-        persons = list.toArray(persons);
+        list.toArray(persons);
     }
 }
