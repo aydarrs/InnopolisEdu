@@ -1,4 +1,4 @@
-package part1.lesson04;
+package part1.lesson05;
 
 /**
  * Sex.
