@@ -79,7 +79,7 @@ public class ObjectBox<T extends Number> {
     @Override
     public String toString() {
         StringBuilder sB = new StringBuilder();
-        for (Number item : list)
+        for (T item : list)
             sB.append(item.toString()).append(", ");
         sB.delete(sB.lastIndexOf(", "), sB.length());
         return sB.toString();

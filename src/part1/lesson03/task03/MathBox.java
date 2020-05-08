@@ -10,9 +10,9 @@ import java.util.*;
  *
  * @author Aydar_Safiullin
  */
-public class MathBox extends ObjectBox<Number> {
+public class MathBox extends ObjectBox<Integer> {
 
-    public MathBox(Number[] arr) {
+    public MathBox(Integer[] arr) {
         super(arr);
     }
 }

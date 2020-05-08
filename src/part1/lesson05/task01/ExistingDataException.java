@@ -1,4 +1,4 @@
-package part1.lesson05;
+package part1.lesson05.task01;
 
 /**
  * ExistingDataException.

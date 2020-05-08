@@ -7,8 +7,7 @@ package part1.lesson03.task03;
  */
 public class Demonstrator {
     public static void main(String[] args) {
-        Number[] arr = {new Integer(4), new Double(99.5), new Byte("48"), new Short("24"),
-                new Long(6666), new Float(11)};
+        Integer[] arr = {7, 8, 345, 66, 10};
         MathBox box = new MathBox(arr);
         System.out.println("Коллекция класса MathBox: " + box);
 

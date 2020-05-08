@@ -12,7 +12,7 @@ public interface UserSort {
      * Сортировка массива
      * @param persons - массив с объектами класса Person
      */
-    public void userSort(Person[] persons);
+    void userSort(Person[] persons);
 
     /**
      * Проверка массива на повторяющиеся данные

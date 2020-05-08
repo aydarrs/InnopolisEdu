@@ -20,9 +20,10 @@ public class Solution {
         switch (var) {
             case 1:
                 System.out.println(s.equals("Another string"));
-                // в break нет необходимости, т.к. выполнение прервется из-за ошибки
+                break;
             case 2:
                 System.out.println(array[4]);
+                break;
             case 3:
                 throw new ArithmeticException();
         }

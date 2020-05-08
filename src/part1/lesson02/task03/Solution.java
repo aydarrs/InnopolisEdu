@@ -21,8 +21,8 @@ public class Solution {
         Person[] persons = new Person[10000];
         for (int i = 0; i < persons.length; i++)
             persons[i] = Person.randomGeneration();
-        ComparatorSort comparatorSort = new ComparatorSort();
-        BubbleSort bubbleSort = new BubbleSort();
+        UserSort comparatorSort = new ComparatorSort();
+        UserSort bubbleSort = new BubbleSort();
 
         try {
             comparatorSort.controlAndOutput(persons);
