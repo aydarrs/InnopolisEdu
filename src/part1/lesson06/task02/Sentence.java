@@ -19,6 +19,11 @@ public class Sentence {
         buildSentence();
     }
 
+    public Sentence(int size) {
+        completeText(size);
+    }
+
+
     /**
      * Запись в список слов, для генерации предложения.
      * @param userWords - готовый массив слов.
@@ -94,7 +99,7 @@ public class Sentence {
      * Используется для дополнения текста до заданного размера.
      * @param size - размер добавляемого предложения.
      */
-    public void completeText(int size) {
+    private void completeText(int size) {
         // определяем, сколько может быть в предложении слов с максимальным размером (15 + 1 пробел)
         int whole = size / 16;
         // определяем, какой длины еще необходимо слово, чтобы получить нужный размер предложения, без учета знака в конце
