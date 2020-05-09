@@ -67,8 +67,7 @@ public class TextGenerator {
         String text = sB.toString();
         if (text.endsWith(" ")) {
             sB.replace(sB.length() - 2, sB.length(), "z.");
-            text = sB.toString(); // Здесь вопрос - при изменении StringBuilder, из которого собирается text в строке 46,
-                                  // изменится ли сам text?
+            text = sB.toString();
         }
 
         // Создаём файлы
