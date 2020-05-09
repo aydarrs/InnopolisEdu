@@ -99,11 +99,11 @@ public class TextGenerator {
         int current = 0;
         for (int x : paragraphs)
             current += x;
-        // Сколько предложений будет в абзаце в абзаце
-        int result = ThreadLocalRandom.current().nextInt(1,20);
+        // Сколько предложений будет в абзаце
+        int result = ThreadLocalRandom.current().nextInt(1,21);
         // Если в абзаце должно быть меньше предложений, чем осталось не распределенных по абзацам,
         // добавляем место разбиения в список и рекурсивно продолжаем работу метода,
-        // пока не определим все места разбиения на абзацы
+        // пока не определим все места разбиения
         if (result < sentences.size() - current) {
             paragraphs.add(result + current);
             paragraphSeparate();
@@ -114,7 +114,7 @@ public class TextGenerator {
     public static void main(String[] args) {
         TextGenerator generator = new TextGenerator();
 
-        // генерируем массив готовых слов, которые должны попадать в предложение с заданной вероятностью
+        // генерируем массив готовых слов, которые должны попасть в предложение с заданной вероятностью
         String[] probableWords = new String[1000];
         for (int i = 0; i < probableWords.length; i++)
             probableWords[i] = new Word().toString();
