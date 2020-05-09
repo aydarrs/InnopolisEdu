@@ -8,6 +8,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -20,7 +21,7 @@ public class TextGenerator {
     // список предложений
     private List<String> sentences = new ArrayList<>();
     // список с указанием номеров предложений, после которых начинается новый абзац
-    List<Integer> paragraphs = new ArrayList<>();
+    List<Integer> paragraphs = new LinkedList<>();
 
     /**
      * Генерирует и записывает текст в файлы.
