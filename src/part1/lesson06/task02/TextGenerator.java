@@ -96,8 +96,9 @@ public class TextGenerator {
     private void paragraphSeparate() {
         // Текущий номер предложения
         int current = 0;
-        for (int x : paragraphs)
-            current += x;
+        if (!paragraphs.isEmpty())
+            current = paragraphs.get(paragraphs.size() - 1);
+
         // Сколько предложений будет в абзаце
         int result = ThreadLocalRandom.current().nextInt(1,21);
         // Если в абзаце должно быть меньше предложений, чем осталось не распределенных по абзацам,

@@ -104,11 +104,16 @@ public class Sentence {
         int whole = size / 16;
         // определяем, какой длины еще необходимо слово, чтобы получить нужный размер предложения, без учета знака в конце
         int balance = size % 16 - 1;
-        // собираем предложение, добавляем знак в конец.
+        // собираем предложение
         StringBuilder sB = new StringBuilder();
         for (int i = 0; i < whole; i++)
             sB.append(new Word(15)).append(" ");
-        sB.append(new Word(balance));
+        // проверяем, нужно ли добавить слово заданной длины. Если нет, то убираем последний пробел
+        if (balance != 0)
+            sB.append(new Word(balance));
+        else
+            sB.delete(sB.length() - 1, sB.length());
+        // добавляем знак в конец предложения
         char mark = markAtTheEndGenerate();
         sB.append(mark);
         represent = setTitle(sB.toString());
