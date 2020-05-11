@@ -31,7 +31,7 @@ public class TextGenerator {
      * @param words - готовый массив слов.
      * @param probability - вероятность попадания слова из готового массива в предложение
      */
-    private void getFiles(String path, int n, int size, String[] words, int probability) {
+    public void getFiles(String path, int n, int size, String[] words, int probability) {
         System.out.println(String.format("Создание %d файлов(-а) по %d байт.", n, size));
         int currentSize = 0;
         StringBuilder sB = new StringBuilder();
