@@ -26,7 +26,7 @@ public class Solution {
             String readData = sB.toString();
 
             // searching words and add them to Set
-            Pattern pattern = Pattern.compile("\\b[\\wА-Яа-я]+[-\\wА-Яа-я]*\\b");
+            Pattern pattern = Pattern.compile("\\b[-\\wА-Яа-я]+\\b");
             Matcher matcher = pattern.matcher(readData);
             while (matcher.find()) {
                 words.add(readData.substring(matcher.start(), matcher.end()));
