@@ -7,7 +7,6 @@ import java.util.*;
 /**
  * Game.
  * Serializable class.
- *
  * @author Aydar_Safiullin
  */
 public class Game implements Serializable {
@@ -30,7 +29,6 @@ public class Game implements Serializable {
 
     /**
      * Generate random scores for gamers.
-     *
      * @param gamers - list of gamers.
      */
     public void saveGame(Gamer[] gamers) {

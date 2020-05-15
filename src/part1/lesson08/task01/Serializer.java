@@ -9,7 +9,7 @@ import java.util.Set;
 
 /**
  * Serializer.
- *
+ * Solution of task01.
  * @author Aydar_Safiullin
  */
 public class Serializer {
@@ -70,9 +70,6 @@ public class Serializer {
             // после проверяем, содержит ли наш объект непримитивные поля
             // (за исключением String полей)
             toFlatObjectCheeking(result);
-        } catch (NoFlatObjectException e) {
-            System.out.println("По условию задачи работаем только с \"плоскими\" объектами!");
-            e.printStackTrace();
         } catch (FileNotFoundException e) {
             System.out.println("Файл не найден");
             e.printStackTrace();
@@ -81,6 +78,9 @@ public class Serializer {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             System.out.println("Ошибка приведения класса");
+            e.printStackTrace();
+        } catch (NoFlatObjectException e) {
+            System.out.println("По условию задачи работаем только с \"плоскими\" объектами!");
             e.printStackTrace();
         }
         return result;

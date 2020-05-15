@@ -5,7 +5,7 @@ import java.util.Objects;
 
 /**
  * Gamer.
- *
+ * Item for Game.class.
  * @author Aydar_Safiullin
  */
 public class Gamer implements Serializable {

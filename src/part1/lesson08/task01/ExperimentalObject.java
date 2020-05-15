@@ -18,10 +18,6 @@ public class ExperimentalObject implements Serializable {
         this.name = name;
     }
 
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
-    }
-
     public int getId() {
         return id;
     }

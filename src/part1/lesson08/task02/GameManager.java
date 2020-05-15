@@ -3,8 +3,8 @@ package part1.lesson08.task02;
 import java.io.*;
 
 /**
- * Serializer.
- *
+ * GameManager.
+ * Solution of task02.-
  * @author Aydar_Safiullin
  */
 public class GameManager {
