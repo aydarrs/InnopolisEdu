@@ -4,7 +4,7 @@ import java.io.*;
 
 /**
  * GameManager.
- * Solution of task02.-
+ * Solution of task02.
  * @author Aydar_Safiullin
  */
 public class GameManager {
