@@ -26,7 +26,8 @@ public class ArrayItemsFactorials {
         service.shutdown();
 
         try {
-            service.awaitTermination(5, TimeUnit.SECONDS);
+            if (service.awaitTermination(5, TimeUnit.SECONDS))
+                service.shutdownNow();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -85,6 +86,5 @@ public class ArrayItemsFactorials {
         for (Integer key : secondEx.store.keySet())
             System.out.println(String.format("Факториал чила %d равен %s", key, secondEx.store.get(key)));
         System.out.println();
-
     }
 }

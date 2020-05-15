@@ -21,12 +21,7 @@ public class Word {
      */
     private void wordGenerate() {
         int length = ThreadLocalRandom.current().nextInt(1, 16);
-        StringBuilder sB = new StringBuilder();
-
-        for (int i = 0; i < length; i++)
-            sB.append(letterGenerate());
-
-        represent = sB.toString();
+        wordGenerate(length);
     }
 
     /**
