@@ -13,7 +13,7 @@ public class MyClassLoader extends ClassLoader {
 
     @Override
     public Class<?> loadClass(String name) throws ClassNotFoundException {
-        if ("part1.lesson09.task01.SomeClass".equals(name)) {
+        if (SomeClass.class.getName().equals(name)) {
             return findClass(name);
         }
 
@@ -22,7 +22,7 @@ public class MyClassLoader extends ClassLoader {
 
     @Override
     protected Class<?> findClass(String name) throws ClassNotFoundException {
-        if ("part1.lesson09.task01.SomeClass".equals(name)) {
+        if (SomeClass.class.getName().equals(name)) {
             try {
                 byte[] allBytes = Files.readAllBytes(Paths.get("SomeClass.class"));
                 return defineClass(name, allBytes, 0, allBytes.length);

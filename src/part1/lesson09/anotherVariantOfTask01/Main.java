@@ -63,7 +63,7 @@ public class Main {
         ClassLoader cL = new MyClassLoader();
 
         try {
-            Class<?> editClass = cL.loadClass("part1.lesson09.task01.SomeClass");
+            Class<?> editClass = cL.loadClass(SomeClass.class.getName());
             editClass.getMethod("doWork").invoke(editClass.newInstance());
 //            SomeClass s = (SomeClass) editClass.getDeclaredConstructor().newInstance();
 //            s.doWork();
