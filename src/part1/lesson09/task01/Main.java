@@ -24,7 +24,7 @@ public class Main {
         String classFile = "part1.lesson09.task01.SomeClass";
         // Работа с подключенной библиотекой
         Worker worker = Reflect.compile(classFile, javaCode).create().get();
-        System.out.println("Резултат работы метода:");
+        System.out.println("Результат работы метода:");
         worker.doWork();
         System.out.println("_____________________________");
         System.out.println("Использованный ClassLoader:");

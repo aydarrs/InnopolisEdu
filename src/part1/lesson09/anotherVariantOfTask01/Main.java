@@ -42,8 +42,13 @@ public class Main {
     private static void compileRuntime(String javaFile) {
         Path javaSource = Paths.get(javaFile);
         File[] files = {javaSource.toFile()};
+        //Создаём компилятор
         JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
-        StandardJavaFileManager fileManager = compiler.getStandardFileManager(null, null, null);
+        StandardJavaFileManager fileManager = compiler.getStandardFileManager(
+                null,
+                null,
+                null);
+        //
         Iterable<? extends JavaFileObject> compilationUnits =
                 fileManager.getJavaFileObjectsFromFiles(Arrays.asList(files));
         JavaCompiler.CompilationTask task = compiler.getTask(
