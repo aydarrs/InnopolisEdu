@@ -19,14 +19,6 @@ public class Game implements Serializable {
         date = new Date();
     }
 
-    public Map<Gamer, Integer> getGamersScore() {
-        return gamersScore;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
     /**
      * Generate random scores for gamers.
      * @param gamers - list of gamers.
@@ -35,8 +27,6 @@ public class Game implements Serializable {
         Random random = new Random();
         for (Gamer gamer : gamers)
             gamersScore.put(gamer, random.nextInt(10000));
-
-
     }
 
     @Override

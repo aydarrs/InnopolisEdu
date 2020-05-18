@@ -6,4 +6,8 @@ package part1.lesson08.task01;
  * @author Aydar_Safiullin
  */
 public class NoFlatObjectException extends Exception{
+    @Override
+    public String getMessage() {
+        return "По условию задачи работаем только с \"плоскими\" объектами!";
+    }
 }
