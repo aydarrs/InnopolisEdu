@@ -1,7 +1,5 @@
 package part1.lesson10.task01;
 
-import part1.lesson10.task01.client.Client;
-
 /**
  * ClientImitation.
  *
@@ -9,6 +7,6 @@ import part1.lesson10.task01.client.Client;
  */
 public class ClientImitation1 {
     public static void main(String[] args) {
-        Client client = new Client("John");
+        Client client = new Client();
     }
 }

@@ -1,8 +1,5 @@
 package part1.lesson10.task01;
 
-import part1.lesson10.task01.client.Admin;
-import part1.lesson10.task01.client.Client;
-
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -18,8 +15,11 @@ import java.util.Map;
 public class Server {
     public static final int PORT = 5800;
     private static DatagramSocket socket;
-    // Map для хранения поключенных клиентов.
-    private static Map<Integer, InetAddress> clients = new HashMap<>();
+    public static final String ADMIN_NAME = "admin";
+    // Map для хранения адресов поключенных клиентов.
+    private static Map<Integer, InetAddress> clientsAddresses = new HashMap<>();
+    // Map для хранения имен поключенных клиентов.
+    private static Map<Integer, String> clientsNames = new HashMap<>();
 
     public static void main(String[] args) {
         System.out.println("Сервер запущен");
@@ -28,28 +28,38 @@ public class Server {
 
             while (true) {
                 // ждем подключения клиента.
-                byte[] buffer = new byte[256];
-                DatagramPacket packet = new DatagramPacket(buffer, buffer.length);
+                byte[] receiveBuffer = new byte[256];
+                DatagramPacket packet = new DatagramPacket(receiveBuffer, receiveBuffer.length);
                 socket.receive(packet);
-                // добавляем клиента в map.
                 InetAddress address = packet.getAddress();
                 int port = packet.getPort();
-                clients.put(port, address);
 
                 String received = new String(packet.getData(), 0, packet.getLength());
-                System.out.println(received);
-                // проверяем, не вышел ли клиент, чтобы исключить его из рассылки.
-                if (received.endsWith(Client.EXIT_MSG)) {
-                    clients.remove(port);
+
+                // добавляем клиента в map
+                if (!clientsAddresses.containsKey(port)) {
+                    clientsAddresses.put(port, address);
+                    clientsNames.put(port, received);
+                    continue;
                 }
+
                 // здесь сервер выключается админом
-                if (received.startsWith(Admin.ADMIN_NAME) && received.endsWith(Client.EXIT_MSG)) {
+                if (clientsNames.get(port).equals("admin") && received.equals(Client.EXIT_MSG)) {
                     return;
                 }
 
+                // проверяем, не вышел ли клиент, чтобы исключить его из рассылки.
+                if (received.equals(Client.EXIT_MSG)) {
+                    clientsAddresses.remove(port);
+                    continue;
+                }
+
                 // Делаем рассылку всем клиентам.
-                for (Map.Entry<Integer, InetAddress> client : clients.entrySet()) {
-                    packet = new DatagramPacket(buffer, buffer.length, client.getValue(), client.getKey());
+                String toSend = clientsNames.get(port) + ": " + received;
+                System.out.println(toSend);
+                byte[] sendBuffer = toSend.getBytes();
+                for (Map.Entry<Integer, InetAddress> client : clientsAddresses.entrySet()) {
+                    packet = new DatagramPacket(sendBuffer, sendBuffer.length, client.getValue(), client.getKey());
                     socket.send(packet);
                 }
             }

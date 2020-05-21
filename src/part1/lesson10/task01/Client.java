@@ -1,6 +1,4 @@
-package part1.lesson10.task01.client;
-
-import part1.lesson10.task01.Server;
+package part1.lesson10.task01;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -21,8 +19,7 @@ public class Client {
     public static final String EXIT_MSG = "exit";
     protected boolean isOnline = true;
 
-    public Client(String name) {
-        this.name = name;
+    public Client() {
         try {
             socket = new DatagramSocket();
             address = InetAddress.getByName("localhost");
@@ -40,14 +37,18 @@ public class Client {
      * @throws IOException
      */
     protected void startTalking() throws IOException {
-        startListening();
-        sendMessage(name + " подключился к чату");
+        System.out.println("Введите своё имя");
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        name = reader.readLine();
+        sendMessage(name);
+
+        startListening();
+        sendMessage("подключился к чату");
         String msg;
         while (!EXIT_MSG.equals(msg = reader.readLine())) {
             sendMessage(msg);
         }
-        sendMessage(name + " покинул чат");
+        sendMessage("покинул чат");
         sendMessage(EXIT_MSG);
         reader.close();
         isOnline = false;
@@ -84,8 +85,7 @@ public class Client {
      * @throws IOException
      */
     protected void sendMessage(String msg) throws IOException {
-        String toSend = name + ": " + msg;
-        byte[] buffer = toSend.getBytes();
+        byte[] buffer = msg.getBytes();
         DatagramPacket packet = new DatagramPacket(buffer, buffer.length, address, Server.PORT);
         socket.send(packet);
     }
