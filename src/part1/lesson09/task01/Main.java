@@ -29,6 +29,7 @@ public class Main {
         System.out.println("_____________________________");
         System.out.println("Использованный ClassLoader:");
         System.out.println(worker.getClass().getClassLoader());
+
     }
 
     // Изначально планировал использовать собственный ClassLoader,
