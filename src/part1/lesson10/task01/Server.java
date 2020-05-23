@@ -15,10 +15,9 @@ import java.util.Map;
 public class Server {
     public static final int PORT = 5800;
     private static DatagramSocket socket;
-    public static final String ADMIN_NAME = "admin";
-    // Map для хранения адресов поключенных клиентов.
+    // Map для хранения адресов поключенных клиентов - используется для рассылки.
     private static Map<Integer, InetAddress> clientsAddresses = new HashMap<>();
-    // Map для хранения имен поключенных клиентов.
+    // Map для хранения соответствий портов и имен поключенных клиентов - используется для поиска имени по порту
     private static Map<Integer, String> clientsNames = new HashMap<>();
 
     public static void main(String[] args) {
@@ -33,41 +32,53 @@ public class Server {
                 socket.receive(packet);
                 InetAddress address = packet.getAddress();
                 int port = packet.getPort();
-
                 String received = new String(packet.getData(), 0, packet.getLength());
 
-                // добавляем клиента в map
+                // добавляем клиента в наши map
                 if (!clientsAddresses.containsKey(port)) {
-                    clientsAddresses.put(port, address);
-                    clientsNames.put(port, received);
-                    continue;
-                }
-
-                // здесь сервер выключается админом
-                if (clientsNames.get(port).equals("admin") && received.equals(Client.EXIT_MSG)) {
-                    return;
-                }
-
-                // проверяем, не вышел ли клиент, чтобы исключить его из рассылки.
-                if (received.equals(Client.EXIT_MSG)) {
-                    clientsAddresses.remove(port);
+                    connectClient(address, port, received);
                     continue;
                 }
 
                 // Делаем рассылку всем клиентам.
                 String toSend = clientsNames.get(port) + ": " + received;
                 System.out.println(toSend);
-                byte[] sendBuffer = toSend.getBytes();
-                for (Map.Entry<Integer, InetAddress> client : clientsAddresses.entrySet()) {
-                    packet = new DatagramPacket(sendBuffer, sendBuffer.length, client.getValue(), client.getKey());
-                    socket.send(packet);
-                }
+                sendMsg(toSend);
             }
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
             System.out.println("Сервер остановлен");
             socket.close();
+        }
+    }
+
+    /**
+     * Add new client and notify all about this.
+     * @param address - address of new client.
+     * @param port - port of new client.
+     * @param received - received message with name of client.
+     * @throws IOException
+     */
+    private static void connectClient(InetAddress address, int port, String received) throws IOException {
+        clientsAddresses.put(port, address);
+        clientsNames.put(port, received);
+        String connectInfo = clientsNames.get(port) + " подключился к чату";
+        System.out.println(connectInfo);
+        // уведомляем всех о подключении нового клиента
+        sendMsg(connectInfo);
+    }
+
+    /**
+     * Send message to all users.
+     * @param toSend - sended message.
+     * @throws IOException
+     */
+    private static void sendMsg(String toSend) throws IOException {
+        byte[] sendBuffer = toSend.getBytes();
+        for (Map.Entry<Integer, InetAddress> client : clientsAddresses.entrySet()) {
+            DatagramPacket packet = new DatagramPacket(sendBuffer, sendBuffer.length, client.getValue(), client.getKey());
+            socket.send(packet);
         }
     }
 }
