@@ -40,7 +40,7 @@ public class Client {
      * Start talking process.
      * @throws IOException
      */
-    protected void startTalking() throws IOException {
+    private void startTalking() throws IOException {
         System.out.println("Введите своё имя");
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         name = reader.readLine();
@@ -64,7 +64,7 @@ public class Client {
     /**
      * Receive messages.
      */
-    protected void startListening() {
+    private void startListening() {
         Runnable listener = () -> {
             while (true) {
                 try {
@@ -97,7 +97,7 @@ public class Client {
      * @param msg - send message.
      * @throws IOException
      */
-    protected void sendMessage(String msg) throws IOException {
+    private void sendMessage(String msg) throws IOException {
         byte[] buffer = msg.getBytes();
         DatagramPacket packet = new DatagramPacket(buffer, buffer.length, address, Server.PORT);
         socket.send(packet);

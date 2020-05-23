@@ -33,7 +33,7 @@ public class Client {
      * Start talking process.
      * @throws IOException
      */
-    protected void startTalking() throws IOException {
+    private void startTalking() throws IOException {
         System.out.println("Введите своё имя");
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         String name = reader.readLine();
