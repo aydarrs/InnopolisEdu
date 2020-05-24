@@ -1,5 +1,8 @@
 package part1.lesson12.task02;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * MetaspaceOut.
  *  * Пример 1: -XX:+UseSerialGC -Xmx100m
@@ -11,9 +14,11 @@ package part1.lesson12.task02;
 public class MetaspaceOut {
     public static void main(String[] args) throws InterruptedException {
         StringBuilder sB = new StringBuilder();
-        Thread.sleep(1_000);
+        Thread.sleep(15_000);
+        List<String> list = new ArrayList<>();
         while (true) {
             sB.append("word ");
+            list.add(sB.toString());
         }
     }
 }
