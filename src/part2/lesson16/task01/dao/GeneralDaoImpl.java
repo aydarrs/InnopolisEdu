@@ -28,7 +28,7 @@ public abstract class GeneralDaoImpl<T> implements GeneralDao<T> {
      * @param rowSet - customized RowSet.
      * @throws SQLException
      */
-    protected final void rowSetCustomize(RowSet rowSet) throws SQLException {
+    protected void rowSetCustomize(RowSet rowSet) throws SQLException {
         rowSet.setUrl(URL);
         rowSet.setUsername(USER);
         rowSet.setPassword(PASSWORD);
@@ -39,7 +39,7 @@ public abstract class GeneralDaoImpl<T> implements GeneralDao<T> {
      * @return Connection to database.
      * @throws SQLException
      */
-    protected final Connection traditionalConnectToDB() throws SQLException {
+    protected Connection traditionalConnectToDB() throws SQLException {
         return DriverManager.getConnection(URL, USER, PASSWORD);
     }
 

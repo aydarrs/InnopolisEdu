@@ -1,7 +1,5 @@
 package part1.lesson03.task03;
 
-import java.util.*;
-
 /**
  * MathBox.
  * Работа с коллекцией Number.
