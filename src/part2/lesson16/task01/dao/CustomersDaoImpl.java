@@ -5,7 +5,6 @@ import part2.lesson16.task01.dto.Customer;
 
 import javax.sql.RowSet;
 import javax.sql.rowset.JdbcRowSet;
-import javax.sql.rowset.RowSetProvider;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -54,7 +53,7 @@ public class CustomersDaoImpl extends GeneralDaoImpl<Customer> {
         Customer customer = null;
         String sqlCommand = "SELECT * FROM " + tableName;
 
-        try (JdbcRowSet rowSet = RowSetProvider.newFactory().createJdbcRowSet()) {
+        try (JdbcRowSet rowSet = getRowSet()) {
             rowSetCustomize(rowSet);
             rowSet.setCommand(sqlCommand);
             rowSet.execute();
@@ -79,7 +78,7 @@ public class CustomersDaoImpl extends GeneralDaoImpl<Customer> {
         String sqlCommand = "SELECT * FROM " + tableName;
         boolean result = false;
 
-        try (JdbcRowSet rowSet = RowSetProvider.newFactory().createJdbcRowSet()) {
+        try (JdbcRowSet rowSet = getRowSet()) {
             rowSetCustomize(rowSet);
             rowSet.setConcurrency(RowSet.CONCUR_UPDATABLE);
             rowSet.setCommand(sqlCommand);

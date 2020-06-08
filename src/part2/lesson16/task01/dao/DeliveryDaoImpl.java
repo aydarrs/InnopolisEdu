@@ -73,7 +73,7 @@ public class DeliveryDaoImpl extends GeneralDaoImpl<Good> {
         Good toDeliveryGood = null;
         String sqlCommand = "SELECT * FROM " + tableName;
 
-        try (JdbcRowSet rowSet = RowSetProvider.newFactory().createJdbcRowSet()) {
+        try (JdbcRowSet rowSet = getRowSet()) {
             rowSetCustomize(rowSet);
             rowSet.setCommand(sqlCommand);
             rowSet.execute();
@@ -100,7 +100,7 @@ public class DeliveryDaoImpl extends GeneralDaoImpl<Good> {
         String sqlCommand = "SELECT * FROM " + tableName;
         boolean result = false;
 
-        try (JdbcRowSet rowSet = RowSetProvider.newFactory().createJdbcRowSet()) {
+        try (JdbcRowSet rowSet = getRowSet()) {
             rowSetCustomize(rowSet);
             rowSet.setConcurrency(RowSet.CONCUR_UPDATABLE);
             rowSet.setCommand(sqlCommand);

@@ -5,7 +5,6 @@ import part2.lesson16.task01.dto.Good;
 
 import javax.sql.RowSet;
 import javax.sql.rowset.JdbcRowSet;
-import javax.sql.rowset.RowSetProvider;
 import java.sql.*;
 
 /**
@@ -49,7 +48,7 @@ public class GoodsDaoImpl extends GeneralDaoImpl<Good> {
         Good good = null;
         String sqlCommand = "SELECT * FROM " + tableName;
 
-        try (JdbcRowSet rowSet = RowSetProvider.newFactory().createJdbcRowSet()) {
+        try (JdbcRowSet rowSet = getRowSet()) {
             rowSetCustomize(rowSet);
             rowSet.setCommand(sqlCommand);
             rowSet.execute();
@@ -80,14 +79,14 @@ public class GoodsDaoImpl extends GeneralDaoImpl<Good> {
         String sqlCommand = "SELECT * FROM " + tableName;
         boolean result = false;
 
-        try (JdbcRowSet rowSet = RowSetProvider.newFactory().createJdbcRowSet()) {
+        try (JdbcRowSet rowSet = getRowSet()) {
             rowSetCustomize(rowSet);
             rowSet.setConcurrency(RowSet.CONCUR_UPDATABLE);
             rowSet.setCommand(sqlCommand);
             rowSet.execute();
 
             while (rowSet.next()) {
-                if (rowSet.getInt("id") == item.getId()) {
+                if (rowSet.getLong("id") == item.getId()) {
                     rowSet.updateString("type", item.getType());
                     rowSet.updateString("manufacturer", item.getManufacturer());
                     rowSet.updateString("model", item.getModel());

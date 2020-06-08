@@ -67,7 +67,7 @@ public abstract class GeneralDaoImpl<T> implements GeneralDao<T> {
         String sqlCommand = "SELECT * FROM " + tableName;
         List<Integer> itemsId = new ArrayList<>();
 
-        try (JdbcRowSet rowSet = RowSetProvider.newFactory().createJdbcRowSet()) {
+        try (JdbcRowSet rowSet = getRowSet()) {
             rowSetCustomize(rowSet);
             rowSet.setCommand(sqlCommand);
             rowSet.execute();
@@ -119,6 +119,14 @@ public abstract class GeneralDaoImpl<T> implements GeneralDao<T> {
             logger.log(Level.ERROR, "Ошибка при перезагрузке базы", e);
         }
         logger.info("База перезагружена");
+    }
+
+    /**
+     * @return new JdbcRowSet.
+     * @throws SQLException
+     */
+    protected JdbcRowSet getRowSet() throws SQLException {
+        return RowSetProvider.newFactory().createJdbcRowSet();
     }
 
     @Override
